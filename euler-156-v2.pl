@@ -14,7 +14,7 @@ use Euler156_V2 qw(f_d_n);
 
 STDOUT->autoflush(1);
 
-my @found = ( map { +{} } 0 .. 9 );
+my %found;
 
 sub check
 {
@@ -25,7 +25,7 @@ sub check
     {
         if ( $f_first == $first )
         {
-            $found[$d]{$first} = 1;
+            $found{$first} = undef;
         }
     }
     elsif ( $last == $first + 1 )
@@ -95,10 +95,11 @@ for my $d ( 1 .. 9 )
     }
 
     my $sum = 0;
-    for my $k ( keys( %{ $found[$d] } ) )
+    for my $k ( keys( %found) )
     {
         $sum += $k;
     }
+    %found = ();
 
     print "s($d) = $sum\n";
     $total_sum += $sum;
