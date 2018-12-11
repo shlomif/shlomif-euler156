@@ -37,6 +37,16 @@ sub calc_f_delta_for_leading_digits
         : 0
     );
 }
+my @C;
+foreach my $num_digits_after ( 0 .. 100 )
+{
+    foreach my $num_leading_d_digits ( 0 .. 100 )
+    {
+        $C[$num_digits_after][$num_leading_d_digits] =
+            calc_f_delta_for_leading_digits( $num_digits_after,
+            $num_leading_d_digits );
+    }
+}
 
 sub f_d_n
 {
@@ -56,11 +66,10 @@ sub f_d_n
         my $d_in        = ( $d <= $place_d_min );
 
         $ret +=
-            calc_f_delta_for_leading_digits( $place, $num_leading_d_digits ) *
+            $C[$place][$num_leading_d_digits] *
             max( 0, $place_d - ( $d_in ? 1 : 0 ) ) + (
-            $d_in
-            ? calc_f_delta_for_leading_digits( $place,
-                $num_leading_d_digits + 1 )
+              $d_in
+            ? $C[$place][ $num_leading_d_digits + 1 ]
             : 0
             );
 
