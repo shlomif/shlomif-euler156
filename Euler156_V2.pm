@@ -5,10 +5,9 @@ use warnings;
 
 # use integer;
 
-use Math::BigInt lib => 'GMP', ':constant';
+use Math::GMP ':constant';
 
-use List::Util qw(max sum);
-use List::MoreUtils qw();
+use List::Util qw(max);
 
 use parent 'Exporter';
 

@@ -4,10 +4,7 @@ use strict;
 use warnings;
 
 # use integer;
-use Math::BigInt lib => 'GMP', ':constant';
-
-use List::Util qw(sum);
-use List::MoreUtils qw();
+use Math::GMP ':constant';
 
 use lib '.';
 use Euler156_V2 qw(f_d_n);
@@ -95,7 +92,7 @@ for my $d ( 1 .. 9 )
     }
 
     my $sum = 0;
-    for my $k ( keys( %found) )
+    for my $k ( keys(%found) )
     {
         $sum += $k;
     }
