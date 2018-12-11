@@ -14,18 +14,25 @@ use parent 'Exporter';
 
 our @EXPORT_OK = qw(calc_f_delta_for_leading_digits calc_f_delta f_d_n);
 
+# Powers of 10
+my @P = (1);
+while ( @P < 100 )
+{
+    push @P, $P[-1] * 10;
+}
+
 sub calc_f_delta
 {
     my ($exp) = @_;
 
-    return ( $exp + 1 ) * ( 10**$exp );
+    return ( ( $exp + 1 ) * $P[$exp] );
 }
 
 sub calc_f_delta_for_leading_digits
 {
     my ( $num_digits_after, $num_leading_d_digits ) = @_;
 
-    return $num_leading_d_digits * 10**$num_digits_after + (
+    return $num_leading_d_digits * $P[$num_digits_after] + (
         ( $num_digits_after - 1 >= 0 )
         ? calc_f_delta( $num_digits_after - 1 )
         : 0
@@ -60,7 +67,7 @@ sub f_d_n
 
         if ( $place_d == $d )
         {
-            $num_leading_d_digits++;
+            ++$num_leading_d_digits;
         }
     }
 

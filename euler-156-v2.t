@@ -78,7 +78,7 @@ is( f_d_n( 1, 21 ), 13, "f_d_n(1, 21)", );
     {
         foreach my $d ( split //, $n )
         {
-            $f_ds[$d]++;
+            ++$f_ds[$d];
         }
         foreach my $d ( 1 .. 9 )
         {

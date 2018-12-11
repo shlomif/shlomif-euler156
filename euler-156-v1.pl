@@ -18,7 +18,7 @@ for my $n ( 1 .. 1_000_000_000_000 )
     }
     for my $d ( split //, $n )
     {
-        $f_n[$d]++;
+        ++$f_n[$d];
     }
     foreach my $d ( 1 .. 9 )
     {

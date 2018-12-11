@@ -10,7 +10,9 @@ use List::Util qw(sum);
 use List::MoreUtils qw();
 
 use lib '.';
-use Euler156_V2 qw(calc_f_delta_for_leading_digits calc_f_delta f_d_n);
+use Euler156_V2 qw(f_d_n);
+
+STDOUT->autoflush(1);
 
 my @found = ( map { +{} } 0 .. 9 );
 
@@ -37,7 +39,7 @@ sub check
 
         if ( $mid == $first )
         {
-            $mid++;
+            ++$mid;
         }
         if ( $mid < $first or $mid > $last )
         {
