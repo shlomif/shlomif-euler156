@@ -20,12 +20,11 @@ while ( @P < 100 )
 {
     push @P, $P[-1] * 10;
 }
+my @F = map { ( $_ + 1 ) * $P[$_] } keys @P;
 
 sub calc_f_delta
 {
-    my ($exp) = @_;
-
-    return ( ( $exp + 1 ) * $P[$exp] );
+    return $F[shift];
 }
 
 sub calc_f_delta_for_leading_digits
@@ -34,7 +33,7 @@ sub calc_f_delta_for_leading_digits
 
     return $num_leading_d_digits * $P[$num_digits_after] + (
         ( $num_digits_after - 1 >= 0 )
-        ? calc_f_delta( $num_digits_after - 1 )
+        ? $F[ $num_digits_after - 1 ]
         : 0
     );
 }
